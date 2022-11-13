@@ -1,0 +1,217 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml"-->
+<!--      xmlns:th="http://www.thymeleaf.org">-->
+<!--<head  >-->
+<!--  <meta charset="ISO-8859-1">-->
+<!--  <title>new appointment</title>-->
+<!--</head>-->
+<!--<body style="background-color:powderblue;">-->
+<!--<hr> <hr>-->
+<!--<H1 align="center">TOY STATION</H1>-->
+<!--<hr>-->
+<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">-->
+<!--  <div class="container-fluid">-->
+<!--    <a class="navbar-brand" href="#">TOY Station</a>-->
+<!--    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--      <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+<!--    <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+<!--      <ul class="navbar-nav me-auto mb-2 mb-lg-0">-->
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link active" aria-current="page" th:href="@{/seniorCitizens}">Available Seniors</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link active" aria-current="page" th:href="@{/logout}">Logout</a>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</nav>-->
+<!--<div align="center">-->
+<!--  <h1>Create New Appointment</h1>-->
+<!--  <br />-->
+<!--  <form action="#" th:action="@{/activity_schedule/save}" th:object="${activitySchedule}">-->
+
+<!--    <table border="0" cellpadding="10">-->
+<!--      <tr>-->
+<!--        <td>Patient name:</td>-->
+<!--        <td><input type="text" th:field="*{childName}" /></td>-->
+<!--      </tr>-->
+<!--      <tr>-->
+<!--        <td>doctor name:</td>-->
+<!--        <td><input type="text" th:field="*{seniorName}" /></td>-->
+<!--      </tr>-->
+<!--      <tr>-->
+<!--        <td>date:</td>-->
+<!--        <td><input type="date" th:field="*{date}" /></td>-->
+<!--      </tr>-->
+
+<!--      <tr>-->
+<!--        <td>Need prescription?</td>-->
+<!--        <td><input type="text" th:field="*{description}" /></td>-->
+<!--      </tr>-->
+
+<!--      <tr>-->
+<!--        <td colspan="2"><button type="submit">Save</button> </td>-->
+<!--      </tr>-->
+<!--    </table>-->
+<!--  </form>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
+
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+  <meta charset="UTF-8">
+  <title>Activity Schedule Registration</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <style type="text/css">
+          select {
+          display: inline-block;
+          width: 200px;
+          }
+          </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">TOY Station</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/admin_activity_schedules}">Available Schedules</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/seniorCitizens}">Seniors List</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/children}">Children List</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<br />
+<br />
+<br />
+<div class="container">
+  <div class="row col-md-8 offset-md-2">
+    <div class="card">
+      <div th:if="${param.success}">
+        <div class="alert alert-info">You've successfully registered
+          to our app!</div>
+      </div>
+      <div class="card-header">
+        <h2 class="text-center">Activity Registration</h2>
+      </div>
+      <div class="card-body">
+        <form method="post" role="form" th:action="@{/activity_schedule/save}" th:object="${activitySchedule}">
+
+<!--          <div class="form-group mb-3">-->
+<!--            <label class="form-label">Child Name</label>-->
+<!--            <input class="form-control"-->
+<!--                   id="childName"-->
+<!--                   name="childName"-->
+<!--                   placeholder="Enter child name"-->
+<!--                   th:field="*{childName}"-->
+<!--                   type="text"-->
+<!--            />-->
+<!--            <p th:errors="*{childName}" class="text-danger"-->
+<!--               th:if="${#fields.hasErrors('childName')}">-->
+<!--            </p>-->
+<!--          </div>-->
+
+<!--          <div class="form-group mb-3">-->
+<!--            <label class="form-label">Senior Name</label>-->
+<!--            <input class="form-control"-->
+<!--                   id="seniorName"-->
+<!--                   name="seniorName"-->
+<!--                   placeholder="Enter senior name"-->
+<!--                   th:field="*{seniorName}"-->
+<!--                   type="text"-->
+<!--            />-->
+<!--            <p th:errors="*{seniorName}" class="text-danger"-->
+<!--               th:if="${#fields.hasErrors('seniorName')}">-->
+<!--            </p>-->
+<!--          </div>-->
+          <div class="form-group mb-3">
+            <label class="form-label">Select the Child</label>
+            <select th:field="*{childName}">
+              <option value=""> -- </option>
+              <option th:each="p : ${childrenNames}" th:value="${p}" th:text="${p}" ></option>
+            </select>
+            <p th:errors="*{childName}" class="text-danger"
+               th:if="${#fields.hasErrors('childName')}">
+            </p>
+          </div>
+
+
+          <div class="form-group mb-3">
+            <label class="form-label">Select the Senior Citizen</label>
+            <select th:field="*{seniorName}">
+              <option value=""> -- </option>
+              <option th:each="p : ${seniorNames}" th:value="${p}" th:text="${p}" ></option>
+            </select>
+            <p th:errors="*{seniorName}" class="text-danger"
+               th:if="${#fields.hasErrors('seniorName')}">
+            </p>
+          </div>
+
+
+          <div class="form-group mb-3">
+            <label class="form-label">Schedule Date</label>
+            <input class="form-control"
+                   id="date"
+                   name="date"
+                   th:field="*{date}"
+                   type="date"
+            />
+            <p th:errors="*{date}" class="text-danger"
+               th:if="${#fields.hasErrors('date')}">
+            </p>
+          </div>
+
+          <div class="form-group mb-3">
+            <label class="form-label">Activity Name</label>
+                    <select th:field="*{name}">
+                      <option value=""> -- </option>
+                        <option th:each="p : ${listActivities}" th:value="${p}" th:text="${p}" ></option>
+                      </select>
+            <p th:errors="*{description}" class="text-danger"
+               th:if="${#fields.hasErrors('name')}">
+            </p>
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label">Description</label>
+            <input class="form-control"
+                   id="description"
+                   name="description"
+                   placeholder="Enter schedule details"
+                   th:field="*{name}"
+                   type="text"
+            />
+            <p th:errors="*{description}" class="text-danger"
+               th:if="${#fields.hasErrors('name')}">
+            </p>
+          </div>
+
+          <div class="form-group mb-3">
+            <button class="btn btn-primary" type="submit">Create Activity</button>
+<!--            <span>Already registered? <a href="/" th:href="@{/child_login}">Login-->
+<!--                             here</a></span>-->
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
