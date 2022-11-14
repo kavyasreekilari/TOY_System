@@ -48,7 +48,7 @@ public class SeniorCitizenController {
             result.rejectValue("email", null,
                     "There is already an account registered with the same email");
         }
-        if(seniorAge != null && (seniorAge.getAge() <60 ||  seniorAge.getAge()>90)){
+        if(seniorAge != null && (existingSenior.getAge() <60 ||  existingSenior.getAge()>90)){
             result.rejectValue("age",null,"The senior has to be 60 to 90 years old");
         }
 
@@ -56,8 +56,12 @@ public class SeniorCitizenController {
             model.addAttribute("senior", senior);
             return "/senior_registration";
         }
-        // call crimelevel method here
+
+        // calls crimecalculator to calculate safety rank
+        crimeCalculator(senior);
+
         seniorCitizenService.saveSeniorCitizen(senior);
+        System.out.println("Registration succesful for Senior: "+senior.toString());
         return "redirect:/senior_registration?success";
     }
 
@@ -132,44 +136,32 @@ public class SeniorCitizenController {
                 .filter(cust->cust.getFirstName()!=null && cust.getLastName()!=null)
                 .map(cust->String.format("%s%s",cust.getFirstName(),cust.getLastName()))
                 .collect(Collectors.toList());
-        seniorNames.forEach(seniorName -> System.out.println(seniorName));
+//        seniorNames.forEach(seniorName -> System.out.println(seniorName));
         return seniorNames;
     }
 
 
     public int crimeCalculator (SeniorCitizen seniorCitizen) {
+        int level = 1;
+            if(seniorCitizen.getEspionage().booleanValue()){
+                level=level+5;
+            }
+            if(seniorCitizen.getFelony().booleanValue()){
+                level=level+4;
+            }
+            if(seniorCitizen.getSoliciting().booleanValue()){
+                level=level+3;
+            }
+            if(seniorCitizen.getMisdemeanor().booleanValue()){
+                level=level+2;
+            }
+            if(seniorCitizen.getOffence().booleanValue()){
+                level=level+1;
+            }
 
-        List<Boolean> crimeSeverity = new ArrayList<>();
-        crimeSeverity.add(seniorCitizen.getEspionage());
-        crimeSeverity.add(seniorCitizen.getFelony());
-        crimeSeverity.add(seniorCitizen.getSoliciting());
-        crimeSeverity.add(seniorCitizen.getMisdemeanor());
-        crimeSeverity.add(seniorCitizen.getOffence());
+            seniorCitizen.setSafetyLevel(level);
 
-        int level = 0;
-
-//        for(int i=0;i <= crimeSeverity.size();i++){
-//            if(crimeSeverity[i] == true){
-//
-//            }
- //       }
-        for (Boolean crime : crimeSeverity) {
-                if(seniorCitizen.getEspionage().booleanValue()){
-                    level=level+5;
-                }
-                if(seniorCitizen.getFelony().booleanValue()){
-                    level=level+4;
-                }
-                if(seniorCitizen.getSoliciting().booleanValue()){
-                    level=level+3;
-                }
-                if(seniorCitizen.getMisdemeanor().booleanValue()){
-                    level=level+2;
-                }
-                if(seniorCitizen.getOffence().booleanValue()){
-                    level=level+1;
-                }
-        }
         return level;
     }
 }
+

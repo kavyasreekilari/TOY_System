@@ -29,5 +29,11 @@ public interface ActivityScheduleService {
 
     public List<ActivitySchedule> findByDate(String date, String seniorName);
 
+    public List<ActivitySchedule> findByConfirmation(String seniorName);
+
+    public void setStartTime(String date,Integer id);
+
+    public void setEndTime(String date,Integer id);
+
 }
 

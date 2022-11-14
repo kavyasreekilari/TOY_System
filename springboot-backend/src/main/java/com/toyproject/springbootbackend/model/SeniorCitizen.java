@@ -31,9 +31,6 @@ public class SeniorCitizen {
     @Column(name = "email", nullable = false, unique = true, length = 45)
     private String email;
 
-    @Column(name = "password")
-    private String password;
-
     @Column(name = "age")
     private Integer age;
 
@@ -52,12 +49,7 @@ public class SeniorCitizen {
     @Column(name = "offence")
     private Boolean offence;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "senior_roles",
-            joinColumns = { @JoinColumn(name = "senior_id", referencedColumnName = "id") },
-            inverseJoinColumns = { @JoinColumn(name = "role_id", referencedColumnName = "id") }
-    )
-    private List<Role> roles = new ArrayList<>();
+    @Column(name = "safetylevel")
+    private Integer safetyLevel;
 
 }

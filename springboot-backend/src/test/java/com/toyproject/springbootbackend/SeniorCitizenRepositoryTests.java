@@ -22,20 +22,25 @@ public class SeniorCitizenRepositoryTests {
     @Autowired
     private SeniorCitizenRepository repo;
 
-    // test methods go below
     @Test
-    public void testCreateUser() {
+    public void testSeniorRegistration() {
         SeniorCitizen senior = new SeniorCitizen();
-        senior.setFirstName("John");
-        senior.setLastName("Wick");
-        senior.setContact("1234567777");
-        senior.setEmail("johnwick@gmail.com");
-        senior.setPassword("password");
+        senior.setFirstName("Jacob");
+        senior.setLastName("Hall");
+        senior.setAge(78);
+        senior.setContact("4475568998");
+        senior.setEmail("hall48@gmail.com");
+        senior.setEspionage(false);
+        senior.setFelony(false);
+        senior.setMisdemeanor(false);
+        senior.setSoliciting(true);
+        senior.setOffence(true);
 
         SeniorCitizen addedSenior = repo.save(senior);
-
         SeniorCitizen existUser = entityManager.find(SeniorCitizen.class, addedSenior.getID());
-
+        System.out.println();
+        System.out.println("Senior Registration succesful for: "+addedSenior.getFirstName()+addedSenior.getLastName());
+        System.out.println();
         assertThat(senior.getEmail()).isEqualTo(existUser.getEmail());
     }
 }

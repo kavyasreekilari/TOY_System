@@ -8,8 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.List;
-
 @Controller
 public class TOYController {
     @Autowired
@@ -20,13 +18,12 @@ public class TOYController {
 
     @GetMapping("/toysystem")
     public String viewHomePage() {
-        System.out.println("Home Page that directs to Child Management and Senior Management");
+//        System.out.println("Home Page that directs to Child Management and Senior Management");
         return "index";
     }
 
-
     @GetMapping("/toyadmin")
-    public String showReceptionist() {
+    public String showActivityManager() {
         return "activity_management";
     }
 

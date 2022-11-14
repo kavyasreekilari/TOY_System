@@ -4,7 +4,7 @@
 >
 <head>
   <meta charset="UTF-8">
-  <title>Available Schedules</title>
+  <title>Confirmed Activities</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
         rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
@@ -12,16 +12,14 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" th:href="@{/toysystem}">TOY Station</a>
+          <a class="nav-link active" aria-current="page" th:href="@{/activity_management}">TOY Activity Manager</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" th:href="@{/toyadmin}">Activity Manager</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" th:href="@{/new_activity}">New Schedule</a>
+          <a class="nav-link active" aria-current="page" th:href="@{/new_activity}">Schedule Activity</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" th:href="@{/activity_schedules}">All Activities</a>
@@ -32,7 +30,7 @@
 </nav>
 <div class="container">
   <div class="row">
-    <h3> Available Activity Schedules </h3>
+    <h1> Registered children </h1>
   </div>
   <table class="table table-striped table-bordered table-hover">
     <thead class="table-dark">
@@ -40,29 +38,26 @@
       <th>Activity Schedule Id</th>
       <th>Child Name</th>
       <th>Senior Name</th>
-      <th>Activity</th>
-      <th>Special Note</th>
       <th>Schedule Date</th>
       <th>Confirmation</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="activitySchedule: ${listActivitySchedules}">
+    <tr th:each="activitySchedule: ${confirmedSchedules}">
       <td th:text="${activitySchedule.activityschedule_id}"></td>
       <td th:text="${activitySchedule.childName}"></td>
       <td th:text="${activitySchedule.seniorName}"></td>
-      <td th:text="${activitySchedule.name}"></td>
-      <td th:text="${activitySchedule.description}"></td>
       <td th:text="${activitySchedule.date}"></td>
+      <td th:text="${activitySchedule.starttime}"></td>
       <td>
-        <div th:if="${activitySchedule.confirmed != 'confirmed'}">
+        <div th:if="${activitySchedule.starttime != null}">
 
-          <form action=# th:action="@{/confirm_schedule}" >
-            <input type ="submit" value="click to confirm">
+          <form action=# th:action="@{/end_schedule}" >
+            <input type ="submit" value="click to End">
           </form>
         </div>
-        <span th:if="${activitySchedule.confirmed =='confirmed'}"> confirmed
-     		</span>
+<!--        <span th:if="${activitySchedule.confirmed =='confirmed'}"> confirmed-->
+<!--     		</span>-->
       </td>
     </tr>
     </tbody>

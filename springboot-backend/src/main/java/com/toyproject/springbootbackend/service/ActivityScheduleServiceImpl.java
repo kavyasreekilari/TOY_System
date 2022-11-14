@@ -3,6 +3,7 @@ package com.toyproject.springbootbackend.service;
 import com.toyproject.springbootbackend.model.ActivitySchedule;
 import com.toyproject.springbootbackend.repository.ActivityScheduleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,7 +19,7 @@ public class ActivityScheduleServiceImpl implements ActivityScheduleService{
 
     @Override
     public List<ActivitySchedule> listAllActivitySchedules() {
-        return scheduleActivity.findAll();
+        return scheduleActivity.findAll(Sort.by(Sort.Direction.DESC, "date"));
     }
 
     public void saveActivitySchedule(ActivitySchedule activitySchedule) {
@@ -58,6 +59,19 @@ public class ActivityScheduleServiceImpl implements ActivityScheduleService{
 
     public List<ActivitySchedule> findByDate(String date, String seniorName){
         return scheduleActivity.findByDate(date, seniorName);
+    }
+
+    public List<ActivitySchedule> findByConfirmation(String confirmation)
+    {
+        return scheduleActivity.findByConfirmation(confirmation);
+    }
+
+    public void setStartTime(String date, Integer id) {
+         scheduleActivity.setStartTime(date, id);
+    }
+
+    public void setEndTime(String date, Integer id) {
+        scheduleActivity.setEndTime(date, id);
     }
 
 }

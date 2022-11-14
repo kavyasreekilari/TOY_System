@@ -44,6 +44,16 @@ public class ActivityScheduleController {
         return "activity_schedules";
     }
 
+    // get all active activities
+    @GetMapping("/confirmed_schedules")
+    public String getAllConfirmedActivities(Model model, ActivitySchedule activitySchedule) {
+        List<ActivitySchedule> confirmedSchedules = activityScheduleService.findByConfirmation(activitySchedule.getConfirmed());
+        model.addAttribute("confirmedSchedules", confirmedSchedules);
+        String endofactivity = "endofactivity";
+        model.addAttribute("endofactivity",endofactivity);
+        return "confirmed_activities";
+    }
+
     @GetMapping("/new_activity")
     public String createActivitySchedule(Model model) {
         ActivitySchedule activitySchedule = new ActivitySchedule();
@@ -70,6 +80,7 @@ public class ActivityScheduleController {
         activityScheduleService.saveActivitySchedule(activitySchedule);
         String ActivityScheduleId=activitySchedule.getActivityschedule_id().toString();
         String message = "ActivitySchedule was successfully booked, your id is: "+ActivityScheduleId;
+        System.out.println(message);
         return "redirect:/admin_activity_schedules";
 
     }
@@ -91,6 +102,13 @@ public class ActivityScheduleController {
         return "confirm_schedule";
     }
 
+    @GetMapping("/end_schedule")
+    public String showActivityEnd(Model model) {
+        ActivitySchedule activitySchedule = new ActivitySchedule();
+        model.addAttribute("activitySchedule",activitySchedule);
+        return "end_schedule";
+    }
+
     @RequestMapping("/confirm")
     public String confirm(@ModelAttribute("activitySchedule") ActivitySchedule activitySchedule, BindingResult result, ModelMap model,
                           RedirectAttributes redirectAttributes
@@ -100,24 +118,44 @@ public class ActivityScheduleController {
         String confirmation = "confirmed";
         Integer id = activitySchedule.getActivityschedule_id();
         activityScheduleService.setConfirmation(confirmation, id);
-        System.out.println(id);
-        String message = "Appointment was successfully confirmed!";
+        String message = "Schedule was confirmed, your id is: "+activitySchedule.getActivityschedule_id();
+        System.out.println(message);
         redirectAttributes.addFlashAttribute("message", message);
         redirectAttributes.addFlashAttribute("alertClass", "alert-success");
 
-//        SimpleDateFormat localDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//        String date = localDateFormat.format( new Date());
+        SimpleDateFormat localDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date = localDateFormat.format( new Date());
+        activityScheduleService.setStartTime(date,activitySchedule.getActivityschedule_id());
+
+        System.out.println("Schedule start time for activity schedule "+activitySchedule.getActivityschedule_id()+" is "+date);
+
 //        SchedulerUtil schedUtil = new SchedulerUtil();
 //        schedUtil.scheduleActivity(date);
 
-        SchedulerController scheduler1 = new SchedulerController();
-        ScheduleDefinition def1 = new ScheduleDefinition();
-        def1.setCronExpression("10 48 20 12 11 ?");
-        def1.setActionType("Print Data Task");
-        def1.setData("Data to be printed");
-        scheduler1.scheduleATask(def1);
+//        SchedulerController scheduler1 = new SchedulerController();
+//        ScheduleDefinition def1 = new ScheduleDefinition();
+//        def1.setCronExpression("10 48 20 12 11 ?");
+//        def1.setActionType("Print Data Task");
+//        def1.setData("Data to be printed");
+//        scheduler1.scheduleATask(def1);
 
         return "redirect:/admin_activity_schedules";
+    }
+
+
+    @RequestMapping("/endSchedule")
+    public String endSchedule(@ModelAttribute("activitySchedule") ActivitySchedule activitySchedule, BindingResult result, ModelMap model,
+                          RedirectAttributes redirectAttributes
+    ) {
+        System.out.println(activitySchedule);
+        Integer id = activitySchedule.getActivityschedule_id();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dt = dateFormat.format(new Date());
+        String endtime = dt;
+        activitySchedule.setEndTime(endtime);
+        activityScheduleService.setEndTime(endtime,activitySchedule.getActivityschedule_id());
+        System.out.println("Schedule is ended for "+activitySchedule.getActivityschedule_id()+" at "+activitySchedule.getEndTime());
+        return "redirect:/activity_schedules";
     }
 
     public Optional<ActivitySchedule> get(Integer id) {

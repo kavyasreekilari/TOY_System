@@ -21,7 +21,7 @@ public class ActivitySchedule {
     private String Name;
 
     @Column(name = "description")
-    private String Description;
+    private String Description = "None";
 
     @Column(name="childName")
     private String childName;

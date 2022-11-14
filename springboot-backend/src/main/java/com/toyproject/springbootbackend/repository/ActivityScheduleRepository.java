@@ -25,5 +25,16 @@ public interface ActivityScheduleRepository extends JpaRepository<ActivitySchedu
 
     @Query(value="select * from appointment a where a.activity_date =?1 AND a.seniorName =?2", nativeQuery=true)
     List<ActivitySchedule> findByDate(String date, String seniorName);
+
+    @Query(value="select * from activityschedule a  where a.confirmed =?1", nativeQuery=true)
+    List<ActivitySchedule> findByConfirmation(String confirmation);
+
+    @Modifying
+    @Query(value = "update activitySchedule a set a.starttime = ?1 where a.activityschedule_id = ?2", nativeQuery=true)
+    void setStartTime(String date, Integer id);
+
+    @Modifying
+    @Query(value = "update activitySchedule a set a.endtime = ?1 where a.activityschedule_id = ?2", nativeQuery=true)
+    void setEndTime(String date, Integer id);
 }
 

@@ -30,18 +30,7 @@ public class Child {
     @Column(name = "email", unique = true)
     private String email;
 
-    @Column(name = "password")
-    private String password;
-
     @Column(name = "age")
     private Integer age;
-
-//    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//    @JoinTable(
-//            name = "children_roles",
-//            joinColumns = { @JoinColumn(name = "child_id", referencedColumnName = "id") },
-//            inverseJoinColumns = { @JoinColumn(name = "role_id", referencedColumnName = "id") }
-//    )
-//    private List<Role> roles = new ArrayList<>();
 
 }

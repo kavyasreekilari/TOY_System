@@ -17,14 +17,20 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">TOY Station</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<!--    <a class="navbar-brand" href="#">TOY Station</a>-->
+<!--    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--      <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/toysystem}">TOY Station</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link active" aria-current="page" th:href="@{/senior_management}">Senior Citizen Manager</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/new_activity}">New Activity</a>
         </li>
       </ul>
     </div>
@@ -42,7 +48,7 @@
       <th>Age</th>
       <th>Email</th>
       <th>Contact</th>
-      <th>Safety Level</th>
+      <th>Safety Rank</th>
     </tr>
     </thead>
     <tbody>
@@ -52,6 +58,7 @@
       <td th:text="${senior.age}"></td>
       <td th:text="${senior.email}"></td>
       <td th:text="${senior.contact}"></td>
+      <td th:text="${senior.safetyLevel}"></td>
 <!--      <td>-->
 <!--        <div th:if="${appointment.confirmed != 'confirmed'}">-->
 

@@ -26,7 +26,7 @@ public class ChildController {
     public String showRegistrationForm(Model model){
         // create model object to store form data
         Child child = new Child();
-        System.out.println("Child Management is called");
+//        System.out.println("Child Management is called");
         model.addAttribute("child", child);
         return "child_management";
     }
@@ -66,8 +66,8 @@ public class ChildController {
             model.addAttribute("child", child);
             return "/child_registration";
         }
-        System.out.println(child.toString());
         childService.saveChild(child);
+        System.out.println("Registration succesful for Child: "+child.toString());
         return "redirect:/child_registration?success";
     }
 
@@ -123,7 +123,7 @@ public class ChildController {
                 .filter(cust->cust.getFirstName()!=null && cust.getLastName()!=null)
                 .map(cust->String.format("%s%s",cust.getFirstName(),cust.getLastName()))
                 .collect(Collectors.toList());
-        childNames.forEach(childName -> System.out.println(childName));
+//        childNames.forEach(childName -> System.out.println(childName));
         return childNames;
     }
 

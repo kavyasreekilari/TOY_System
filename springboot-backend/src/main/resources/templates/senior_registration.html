@@ -11,12 +11,11 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" th:fragment="header">
     <div class="container-fluid">
-        <a class="navbar-brand" th:href="@{/}">TOY Station</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/toysystem}">TOY Station</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" th:href="@{/senior_management}">Senior Citizen Manager</a>
                 </li>
@@ -35,7 +34,7 @@
                     to our app!</div>
             </div>
             <div class="card-header">
-                <h2 class="text-center">enior Citizen Registration</h2>
+                <h2 class="text-center">Senior Citizen Registration</h2>
             </div>
             <div class="card-body">
                 <form method="post" role="form" th:action="@{/senior_register/save}" th:object="${senior}">
@@ -85,7 +84,7 @@
                         <input class="form-control"
                                id="contact"
                                name="contact"
-                               placeholder="Enter parent contact"
+                               placeholder="Enter your contact"
                                th:field="*{contact}"
                                type="text"
                         />

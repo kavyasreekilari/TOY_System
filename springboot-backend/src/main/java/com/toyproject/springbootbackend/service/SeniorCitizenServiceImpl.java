@@ -3,6 +3,7 @@ package com.toyproject.springbootbackend.service;
 import com.toyproject.springbootbackend.model.SeniorCitizen;
 import com.toyproject.springbootbackend.repository.SeniorCitizenRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
@@ -18,8 +19,9 @@ public class SeniorCitizenServiceImpl implements SeniorCitizenService{
 
     @Override
     public List<SeniorCitizen> getAllSeniorCitizens() {
-        return seniorCitizenRepository.findAll();
+        return seniorCitizenRepository.findAll(Sort.by(Sort.Direction.ASC, "safetyLevel"));
     }
+
 
     @Override
     public SeniorCitizen saveSeniorCitizen(SeniorCitizen seniorCitizen) {
