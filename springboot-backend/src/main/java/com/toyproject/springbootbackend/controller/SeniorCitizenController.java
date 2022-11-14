@@ -42,15 +42,15 @@ public class SeniorCitizenController {
                                BindingResult result,
                                Model model){
         SeniorCitizen existingSenior = seniorCitizenService.findSeniorByEmail(senior.getEmail());
-        SeniorCitizen seniorAge = seniorCitizenService.findSeniorByAge(senior.getAge());
+//        SeniorCitizen seniorAge = seniorCitizenService.findSeniorByAge(senior.getAge());
 
         if(existingSenior != null && existingSenior.getEmail() != null && !existingSenior.getEmail().isEmpty()){
             result.rejectValue("email", null,
                     "There is already an account registered with the same email");
         }
-        if(seniorAge != null && (existingSenior.getAge() <60 ||  existingSenior.getAge()>90)){
-            result.rejectValue("age",null,"The senior has to be 60 to 90 years old");
-        }
+//        if(seniorAge != null && (existingSenior.getAge() <60 ||  existingSenior.getAge()>90)){
+//            result.rejectValue("age",null,"The senior has to be 60 to 90 years old");
+//        }
 
         if(result.hasErrors()){
             model.addAttribute("senior", senior);
@@ -61,7 +61,11 @@ public class SeniorCitizenController {
         crimeCalculator(senior);
 
         seniorCitizenService.saveSeniorCitizen(senior);
-        System.out.println("Registration succesful for Senior: "+senior.toString());
+
+        System.out.println("-----------------------------------------------------------------------------");
+        System.out.println("Registration succesful for Senior: "+senior.getFirstName()+senior.getLastName());
+        System.out.println();
+
         return "redirect:/senior_registration?success";
     }
 

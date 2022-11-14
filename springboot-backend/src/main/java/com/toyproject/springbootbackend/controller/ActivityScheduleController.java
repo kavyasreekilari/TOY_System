@@ -118,8 +118,12 @@ public class ActivityScheduleController {
         String confirmation = "confirmed";
         Integer id = activitySchedule.getActivityschedule_id();
         activityScheduleService.setConfirmation(confirmation, id);
+
+        System.out.println("-----------------------------------------------------------------------------");
         String message = "Schedule was confirmed, your id is: "+activitySchedule.getActivityschedule_id();
         System.out.println(message);
+        System.out.println();
+
         redirectAttributes.addFlashAttribute("message", message);
         redirectAttributes.addFlashAttribute("alertClass", "alert-success");
 
@@ -128,7 +132,7 @@ public class ActivityScheduleController {
         activityScheduleService.setStartTime(date,activitySchedule.getActivityschedule_id());
 
         System.out.println("Schedule start time for activity schedule "+activitySchedule.getActivityschedule_id()+" is "+date);
-
+        System.out.println();
 //        SchedulerUtil schedUtil = new SchedulerUtil();
 //        schedUtil.scheduleActivity(date);
 
@@ -154,6 +158,8 @@ public class ActivityScheduleController {
         String endtime = dt;
         activitySchedule.setEndTime(endtime);
         activityScheduleService.setEndTime(endtime,activitySchedule.getActivityschedule_id());
+
+        System.out.println("--------------------------------------------------------------------------");
         System.out.println("Schedule is ended for "+activitySchedule.getActivityschedule_id()+" at "+activitySchedule.getEndTime());
         return "redirect:/activity_schedules";
     }

@@ -16,7 +16,7 @@ public interface SeniorCitizenService {
 
     SeniorCitizen findSeniorByEmail(String email);
 
-    SeniorCitizen findSeniorByAge(Integer age);
+//    SeniorCitizen findSeniorByAge(Integer age);
 
     SeniorCitizen updateSeniorCitizen(SeniorCitizen seniorCitizen);
 

@@ -38,10 +38,10 @@ public class SeniorCitizenServiceImpl implements SeniorCitizenService{
         return seniorCitizenRepository.findByEmail(email);
     }
 
-    @Override
-    public SeniorCitizen findSeniorByAge(Integer age) {
-        return seniorCitizenRepository.findByAge(age);
-    }
+//    @Override
+//    public SeniorCitizen findSeniorByAge(Integer age) {
+//        return seniorCitizenRepository.findByAge(age);
+//    }
 
     @Override
     public SeniorCitizen updateSeniorCitizen(SeniorCitizen student) {

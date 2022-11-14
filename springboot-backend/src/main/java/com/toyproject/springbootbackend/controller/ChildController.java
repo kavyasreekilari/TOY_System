@@ -67,7 +67,11 @@ public class ChildController {
             return "/child_registration";
         }
         childService.saveChild(child);
-        System.out.println("Registration succesful for Child: "+child.toString());
+
+        System.out.println("-----------------------------------------------------------------------------");
+        System.out.println("Registration succesful for Child: "+child.getFirstName()+child.getLastName());
+        System.out.println();
+
         return "redirect:/child_registration?success";
     }
 

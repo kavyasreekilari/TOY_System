@@ -9,10 +9,7 @@ import com.toyproject.springbootbackend.model.SeniorCitizen;
 import com.toyproject.springbootbackend.repository.ActivityScheduleRepository;
 import com.toyproject.springbootbackend.repository.ChildRepository;
 import com.toyproject.springbootbackend.repository.SeniorCitizenRepository;
-import com.toyproject.springbootbackend.service.ActivityScheduleService;
-import com.toyproject.springbootbackend.service.ActivityScheduleServiceImpl;
-import com.toyproject.springbootbackend.service.ChildService;
-import com.toyproject.springbootbackend.service.SeniorCitizenService;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -56,16 +53,16 @@ public class prjRemote {
     @Test   // Performs Registration for a Senior
     public void testSeniorRegistration() {
 
-        senior.setFirstName("Jacob");
-        senior.setLastName("Hall");
-        senior.setAge(78);
-        senior.setContact("4475568998");
-        senior.setEmail("hall48@gmail.com");
+        senior.setFirstName("Keith");
+        senior.setLastName("Robert");
+        senior.setAge(70);
+        senior.setContact("6627726262");
+        senior.setEmail("keithR77@gmail.com");
         senior.setEspionage(false);
         senior.setFelony(false);
-        senior.setMisdemeanor(false);
+        senior.setMisdemeanor(true);
         senior.setSoliciting(true);
-        senior.setOffence(true);
+        senior.setOffence(false);
 
         seniorControl1.crimeCalculator(senior);
         SeniorCitizen addedSenior = repo.save(senior);
@@ -80,11 +77,11 @@ public class prjRemote {
     @Test  // Performs Registration for a Child
     public void testChildRegistration() {
 
-        testChild1.setFirstName("Ben");
-        testChild1.setLastName("Jones");
-        testChild1.setAge(7);
-        testChild1.setContact("7797786464");
-        testChild1.setEmail("jones6@outlook.com");
+        testChild1.setFirstName("Ana");
+        testChild1.setLastName("Geller");
+        testChild1.setAge(5);
+        testChild1.setContact("2263374646");
+        testChild1.setEmail("gellers446@outlook.com");
 
         Child addedChild = childRepo.save(testChild1);
         Child existChild = entityManager.find(Child.class, addedChild.getID());
@@ -100,13 +97,14 @@ public class prjRemote {
     public void testActivitySupercomponent() throws InterruptedException {
         ActivitySchedule schedule1 = new ActivitySchedule();
 
-        Child testChild2 = childRepo.findByEmail("jones6@outlook.com");
-        SeniorCitizen testSenior2 = repo.findByEmail("hall48@gmail.com");
+        Child testChild2 = childRepo.findByEmail("gellers446@outlook.com");
+        SeniorCitizen testSenior2 = repo.findByEmail("keithR77@gmail.com");
 
         schedule1.setChildName(testChild2.getFirstName()+testChild2.getLastName());
         schedule1.setSeniorName(testSenior2.getFirstName()+testSenior2.getLastName());
-        schedule1.setDate("2022-11-13");
-        schedule1.setName("Book Reading");
+        schedule1.setDate("2022-11-14");
+        schedule1.setName("Puzzle");
+        schedule1.setConfirmed("Confirmed");
 
         activityRepo.setConfirmation("confirmed", schedule1.getActivityschedule_id());
 
@@ -123,7 +121,7 @@ public class prjRemote {
         schedule1.setStartTime(teststarttime);
         System.out.println("Schedule start time is: "+schedule1.getStartTime());
 
-        sleep(8000);
+        sleep(10000);
 
         String testendtime = localDateFormat.format( new Date());
         schedule1.setEndTime(testendtime);
