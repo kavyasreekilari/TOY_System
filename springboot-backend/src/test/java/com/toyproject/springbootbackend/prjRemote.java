@@ -2,6 +2,7 @@ package com.toyproject.springbootbackend;
 
 import com.toyproject.springbootbackend.controller.ActivityScheduleController;
 import com.toyproject.springbootbackend.controller.ChildController;
+import com.toyproject.springbootbackend.controller.SeniorCitizenController;
 import com.toyproject.springbootbackend.model.ActivitySchedule;
 import com.toyproject.springbootbackend.model.Child;
 import com.toyproject.springbootbackend.model.SeniorCitizen;
@@ -40,21 +41,15 @@ public class prjRemote {
     @Autowired
     private ChildRepository childRepo;
 
-//    @Autowired
-//    private ChildService childService;
-
-//    @Autowired
-//    private SeniorCitizenService seniorService1;
-//
     @Autowired
     private ActivityScheduleRepository activityRepo;
 
-//    @Autowired
-//    private ActivityScheduleServiceImpl activityImpl;
 
     SeniorCitizen senior = new SeniorCitizen();
-    ChildController childControl1 = new ChildController();
     Child testChild1 = new Child();
+
+    ChildController childControl1 = new ChildController();
+    SeniorCitizenController seniorControl1 = new SeniorCitizenController();
     ActivityScheduleController activityControl = new ActivityScheduleController();
 
 
@@ -72,7 +67,9 @@ public class prjRemote {
         senior.setSoliciting(true);
         senior.setOffence(true);
 
+        seniorControl1.crimeCalculator(senior);
         SeniorCitizen addedSenior = repo.save(senior);
+
         SeniorCitizen existUser = entityManager.find(SeniorCitizen.class, addedSenior.getID());
         System.out.println();
         System.out.println("Senior Registration succesful for: "+addedSenior.getFirstName()+addedSenior.getLastName());
@@ -99,7 +96,7 @@ public class prjRemote {
     }
 
 
-    @Test
+    @Test   //Simulates Activity Schedule Supercomponent
     public void testActivitySupercomponent() throws InterruptedException {
         ActivitySchedule schedule1 = new ActivitySchedule();
 
