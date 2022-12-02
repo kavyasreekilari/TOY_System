@@ -49,7 +49,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="activitySchedule: ${activitySchedules}">
+        <tr th:each="activitySchedule: ${activitySchedules}" th:style="${activitySchedule.confirmed != 'Not yet confirmed'} and ${activitySchedule.startTime != null} and ${activitySchedule.endTime != null} ? 'background-color: #C1E1C1' : 'background-color: #F5F5DA'">
             <td th:text="${activitySchedule.activityschedule_id}"></td>
             <td th:text="${activitySchedule.childName}"></td>
             <td th:text="${activitySchedule.seniorName}"></td>
@@ -57,7 +57,10 @@
             <td th:text="${activitySchedule.description}"></td>
             <td th:text="${activitySchedule.date}"></td>
             <td th:text="${activitySchedule.confirmed}"></td>
-            <td th:text="${activitySchedule.startTime}"></td>
+            <td th:text="${activitySchedule.startTime}"
+                th:style="${activitySchedule.confirmed == 'confirmed'} and ${activitySchedule.endTime == null} ? 'background-color: #ADD8E6'">
+
+            </td>
             <td th:text="${activitySchedule.endTime}"></td>
         </tr>
         </tbody>

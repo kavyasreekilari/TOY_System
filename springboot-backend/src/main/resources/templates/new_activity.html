@@ -1,65 +1,3 @@
-<!--<!DOCTYPE html>-->
-<!--<html xmlns="http://www.w3.org/1999/xhtml"-->
-<!--      xmlns:th="http://www.thymeleaf.org">-->
-<!--<head  >-->
-<!--  <meta charset="ISO-8859-1">-->
-<!--  <title>new appointment</title>-->
-<!--</head>-->
-<!--<body style="background-color:powderblue;">-->
-<!--<hr> <hr>-->
-<!--<H1 align="center">TOY STATION</H1>-->
-<!--<hr>-->
-<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">-->
-<!--  <div class="container-fluid">-->
-<!--    <a class="navbar-brand" href="#">TOY Station</a>-->
-<!--    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--      <span class="navbar-toggler-icon"></span>-->
-<!--    </button>-->
-<!--    <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
-<!--      <ul class="navbar-nav me-auto mb-2 mb-lg-0">-->
-<!--        <li class="nav-item">-->
-<!--          <a class="nav-link active" aria-current="page" th:href="@{/seniorCitizens}">Available Seniors</a>-->
-<!--        </li>-->
-<!--        <li class="nav-item">-->
-<!--          <a class="nav-link active" aria-current="page" th:href="@{/logout}">Logout</a>-->
-<!--        </li>-->
-<!--      </ul>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</nav>-->
-<!--<div align="center">-->
-<!--  <h1>Create New Appointment</h1>-->
-<!--  <br />-->
-<!--  <form action="#" th:action="@{/activity_schedule/save}" th:object="${activitySchedule}">-->
-
-<!--    <table border="0" cellpadding="10">-->
-<!--      <tr>-->
-<!--        <td>Patient name:</td>-->
-<!--        <td><input type="text" th:field="*{childName}" /></td>-->
-<!--      </tr>-->
-<!--      <tr>-->
-<!--        <td>doctor name:</td>-->
-<!--        <td><input type="text" th:field="*{seniorName}" /></td>-->
-<!--      </tr>-->
-<!--      <tr>-->
-<!--        <td>date:</td>-->
-<!--        <td><input type="date" th:field="*{date}" /></td>-->
-<!--      </tr>-->
-
-<!--      <tr>-->
-<!--        <td>Need prescription?</td>-->
-<!--        <td><input type="text" th:field="*{description}" /></td>-->
-<!--      </tr>-->
-
-<!--      <tr>-->
-<!--        <td colspan="2"><button type="submit">Save</button> </td>-->
-<!--      </tr>-->
-<!--    </table>-->
-<!--  </form>-->
-<!--</div>-->
-<!--</body>-->
-<!--</html>-->
-
 
 <!DOCTYPE html>
 <html lang="en"
@@ -68,13 +6,27 @@
 <head>
   <meta charset="UTF-8">
   <title>Activity Schedule Registration</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <style type="text/css">
+<!--  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"-->
+<!--        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">-->
+<!--   -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+    <style type="text/css">
           select {
           display: inline-block;
+          text-align: center;
           width: 200px;
           }
+body {
+    text-align: center;
+}
+
+form {
+    display: inline-block;
+    text-align: left;
+}
           </style>
 </head>
 <body>
@@ -106,7 +58,8 @@
 <br />
 <br />
 <div class="container">
-  <div class="row col-md-8 offset-md-2">
+<!--  <div class="row col-md-30 offset-md-2">-->
+    <div class="center">
     <div class="card">
       <div th:if="${param.success}">
         <div class="alert alert-info">Your schedule is created!</div>
@@ -117,33 +70,6 @@
       <div class="card-body">
         <form method="post" role="form" th:action="@{/activity_schedule/save}" th:object="${activitySchedule}">
 
-<!--          <div class="form-group mb-3">-->
-<!--            <label class="form-label">Child Name</label>-->
-<!--            <input class="form-control"-->
-<!--                   id="childName"-->
-<!--                   name="childName"-->
-<!--                   placeholder="Enter child name"-->
-<!--                   th:field="*{childName}"-->
-<!--                   type="text"-->
-<!--            />-->
-<!--            <p th:errors="*{childName}" class="text-danger"-->
-<!--               th:if="${#fields.hasErrors('childName')}">-->
-<!--            </p>-->
-<!--          </div>-->
-
-<!--          <div class="form-group mb-3">-->
-<!--            <label class="form-label">Senior Name</label>-->
-<!--            <input class="form-control"-->
-<!--                   id="seniorName"-->
-<!--                   name="seniorName"-->
-<!--                   placeholder="Enter senior name"-->
-<!--                   th:field="*{seniorName}"-->
-<!--                   type="text"-->
-<!--            />-->
-<!--            <p th:errors="*{seniorName}" class="text-danger"-->
-<!--               th:if="${#fields.hasErrors('seniorName')}">-->
-<!--            </p>-->
-<!--          </div>-->
           <div class="form-group mb-3">
             <label class="form-label">Select the Child</label>
             <select th:field="*{childName}">
@@ -170,27 +96,99 @@
 
           <div class="form-group mb-3">
             <label class="form-label">Schedule Date</label>
-            <input class="form-control"
-                   id="date"
-                   name="date"
-                   th:field="*{date}"
-                   type="date"
-            />
+              <input type="date" th:field="*{date}" id="date"/>
+<!--            <input class="form-control"-->
+<!--                   id="date"-->
+<!--                   name="date"-->
+<!--                   th:field="*{date}"-->
+<!--                   type="date"-->
+<!--            />-->
             <p th:errors="*{date}" class="text-danger"
                th:if="${#fields.hasErrors('date')}">
             </p>
           </div>
 
-          <div class="form-group mb-3">
-            <label class="form-label">Activity Name</label>
-                    <select th:field="*{name}">
-                      <option value=""> -- </option>
-                        <option th:each="p : ${listActivities}" th:value="${p}" th:text="${p}" ></option>
-                      </select>
-            <p th:errors="*{name}" class="text-danger"
-               th:if="${#fields.hasErrors('name')}">
-            </p>
-          </div>
+<!--          <div class="form-group mb-3">-->
+<!--            <label class="form-label">Activity Name</label>-->
+<!--                    <select th:field="*{name}">-->
+<!--                      <option value=""> &#45;&#45; </option>-->
+<!--                        <option th:each="p : ${listActivities}" th:value="${p}" th:text="${p}" ></option>-->
+<!--                      </select>-->
+<!--            <p th:errors="*{name}" class="text-danger"-->
+<!--               th:if="${#fields.hasErrors('name')}">-->
+<!--            </p>-->
+<!--          </div>-->
+
+            <div class="form-group mb-3">
+                <p>
+                    Select an Activity for the child and senior:
+                </p>
+                <table class="table table-striped table-bordered table-hover">
+<!--                    <thead class="table-dark" th:style="'background-color: #ADD8E6'">-->
+<!--&lt;!&ndash;                    <tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <th>Activity</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <th>Name</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <th>Select</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </tr>&ndash;&gt;-->
+<!--                        <tr>-->
+<!--                            <th>Book Reading</th>-->
+<!--                            <th>Ball Game</th>-->
+<!--                            <th>Puzzle</th>-->
+<!--                            <th>Origami</th>-->
+<!--                            <th>Drawing</th>-->
+<!--                        </tr>-->
+<!--                    </thead>-->
+                    <tbody>
+                        <tr>
+                            <td> <img width="200" th:src="@{images/bookreading.jpg}" /> </td>
+                            <td> <img width="200" th:src="@{images/ballgame.jpg}" /> </td>
+                            <td> <img width="200" th:src="@{images/puzzle.jpg}" /> </td>
+                            <td> <img width="200" th:src="@{images/origami.jpg}" /> </td>
+                            <td> <img width="200" th:src="@{images/drawing.jpg}" /> </td>
+                        </tr>
+                        <tr>
+                            <td> <label th:for="name" th:text="'Book Reading'" th:value="${listActivities[0]}"></label></td>
+                            <td> <label th:for="name" th:text="'Ball Game'" th:value="${listActivities[0]}"></label></td>
+                            <td> <label th:for="name" th:text="'Puzzle'" th:value="${listActivities[0]}"></label></td>
+                            <td> <label th:for="name" th:text="'Origami'" th:value="${listActivities[0]}"></label></td>
+                            <td> <label th:for="name" th:text="'Drawing'" th:value="${listActivities[0]}"></label></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" id="${listActivities[0]}" th:field="*{name}" value="Book Reading"/></td>
+                            <td><input type="checkbox" id="${listActivities[1]}" th:field="*{name}" value="Ball Game"/></td>
+                            <td><input type="checkbox" id="${listActivities[2]}" th:field="*{name}" value="Puzzle"/></td>
+                            <td><input type="checkbox" id="${listActivities[3]}" th:field="*{name}" value="Origami"/></td>
+                            <td><input type="checkbox" id="${listActivities[4]}" th:field="*{name}" value="Drawing"/></td>
+                        </tr>
+<!--                    <tr>-->
+<!--                        <td> <img width="400" th:src="@{images/toysystem.jpg}" /> </td>-->
+<!--                        <td> <label th:for="name" th:text="'Book Reading'" th:value="${listActivities[0]}"></label></td>-->
+<!--                        <td><input type="checkbox" id="${listActivities[0]}" /></td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td> <img width="400" th:src="@{images/toysystem.jpg}" /> </td>-->
+<!--                        <td> <label th:for="name" th:text="'Ball Game'"></label></td>-->
+<!--                        <td><input type="radio" id="${listActivities[1]}" /></td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td> <img width="400" th:src="@{images/toysystem.jpg}" /> </td>-->
+<!--                        <td> <label th:for="name" th:text="'Puzzle'"></label></td>-->
+<!--                        <td><input type="checkbox" id="${listActivities[2]}" /></td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td> <img width="400" th:src="@{images/toysystem.jpg}" /> </td>-->
+<!--                        <td> <label th:for="name" th:text="'Origami'"></label></td>-->
+<!--                        <td><input type="checkbox" id="${listActivities[3]}" /></td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td> <img width="400" th:src="@{images/toysystem.jpg}" /> </td>-->
+<!--                        <td> <label th:for="name" th:text="'Drawing'"></label></td>-->
+<!--                        <td><input type="checkbox" id="${listActivities[4]}" /></td>-->
+<!--                    </tr>-->
+                    </tbody>
+                </table>
+            </div>
+
           <div class="form-group mb-3">
             <label class="form-label">Special Note</label>
             <input class="form-control"

@@ -55,14 +55,17 @@
       <td th:text="${activitySchedule.description}"></td>
       <td th:text="${activitySchedule.date}"></td>
       <td>
-        <div th:if="${activitySchedule.confirmed != 'confirmed'}">
+        <div th:if="${activitySchedule.confirmed != 'confirmed'}" >
 
           <form action=# th:action="@{/confirm_schedule}" >
             <input type ="submit" value="click to confirm">
           </form>
         </div>
-        <span th:if="${activitySchedule.confirmed =='confirmed'}"> confirmed
+        <div th:if="${activitySchedule.confirmed == 'confirmed'}" th:style="'background-color: #DAF8AE'">
+           <span th:if="${activitySchedule.confirmed =='confirmed'}" > confirmed
      		</span>
+        </div>
+
       </td>
     </tr>
     </tbody>

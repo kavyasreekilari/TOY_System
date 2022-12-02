@@ -53,16 +53,16 @@ public class prjRemote {
     @Test   // Performs Registration for a Senior
     public void testSeniorRegistration() {
 
-        senior.setFirstName("Keith");
-        senior.setLastName("Robert");
-        senior.setAge(70);
-        senior.setContact("6627726262");
-        senior.setEmail("keithR77@gmail.com");
+        senior.setFirstName("Mary");
+        senior.setLastName("Kleen");
+        senior.setAge(74);
+        senior.setContact("9997726262");
+        senior.setEmail("kleenM@gmail.com");
         senior.setEspionage(false);
         senior.setFelony(false);
-        senior.setMisdemeanor(true);
+        senior.setMisdemeanor(false);
         senior.setSoliciting(true);
-        senior.setOffence(false);
+        senior.setOffence(true);
 
         seniorControl1.crimeCalculator(senior);
         SeniorCitizen addedSenior = repo.save(senior);
@@ -77,11 +77,11 @@ public class prjRemote {
     @Test  // Performs Registration for a Child
     public void testChildRegistration() {
 
-        testChild1.setFirstName("Ana");
-        testChild1.setLastName("Geller");
+        testChild1.setFirstName("Joy");
+        testChild1.setLastName("Kellin");
         testChild1.setAge(5);
-        testChild1.setContact("2263374646");
-        testChild1.setEmail("gellers446@outlook.com");
+        testChild1.setContact("9903379646");
+        testChild1.setEmail("kellin6@yahoo.com");
 
         Child addedChild = childRepo.save(testChild1);
         Child existChild = entityManager.find(Child.class, addedChild.getID());
@@ -97,13 +97,13 @@ public class prjRemote {
     public void testActivitySupercomponent() throws InterruptedException {
         ActivitySchedule schedule1 = new ActivitySchedule();
 
-        Child testChild2 = childRepo.findByEmail("gellers446@outlook.com");
-        SeniorCitizen testSenior2 = repo.findByEmail("keithR77@gmail.com");
+        Child testChild2 = childRepo.findByEmail("kellin6@yahoo.com");
+        SeniorCitizen testSenior2 = repo.findByEmail("kleenM@gmail.com");
 
         schedule1.setChildName(testChild2.getFirstName()+testChild2.getLastName());
         schedule1.setSeniorName(testSenior2.getFirstName()+testSenior2.getLastName());
         schedule1.setDate("2022-11-14");
-        schedule1.setName("Puzzle");
+        schedule1.setName("Origami");
         schedule1.setConfirmed("Confirmed");
 
         activityRepo.setConfirmation("confirmed", schedule1.getActivityschedule_id());
