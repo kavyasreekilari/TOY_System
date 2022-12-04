@@ -18,7 +18,7 @@ public class ActivitySchedule {
     private Integer activityschedule_id;
 
     @Column(name = "name")
-    private String Name;
+    private String Name = "Book Reading";
 
     @Column(name = "description")
     private String Description = "None";

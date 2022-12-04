@@ -51,18 +51,27 @@
       <td th:text="${activitySchedule.activityschedule_id}"></td>
       <td th:text="${activitySchedule.childName}"></td>
       <td th:text="${activitySchedule.seniorName}"></td>
-      <td th:text="${activitySchedule.name}"></td>
+<!--      <td th:text="${activitySchedule.name}"></td>-->
+      <div th:switch="${activitySchedule.name}">
+        <td th:case="'Book Reading'" ><img width="100" th:src="@{images/bookreading.jpg}" /></td>
+        <td th:case="'Ball Game'"><img width="100" th:src="@{images/ballgame.jpg}"/></td>
+        <td th:case="'Puzzle'"><img width="100" th:src="@{images/puzzle.jpg}"/></td>
+        <td th:case="'Origami'"><img width="100" th:src="@{images/origami.jpg}"/></td>
+        <td th:case="'Drawing'"><img width="100" th:src="@{images/drawing.jpg}"/></td>
+        <td th:case="*"><img width="100" th:src="@{images/bookreading.jpg}" /></td>
+      </div>
       <td th:text="${activitySchedule.description}"></td>
       <td th:text="${activitySchedule.date}"></td>
-      <td>
+      <td th:style="${activitySchedule.confirmed == 'confirmed'} ? 'background-color: #DAF8AE' : 'background-color:#ADD8E6'">
         <div th:if="${activitySchedule.confirmed != 'confirmed'}" >
 
           <form action=# th:action="@{/confirm_schedule}" >
             <input type ="submit" value="click to confirm">
           </form>
         </div>
-        <div th:if="${activitySchedule.confirmed == 'confirmed'}" th:style="'background-color: #DAF8AE'">
-           <span th:if="${activitySchedule.confirmed =='confirmed'}" > confirmed
+<!--        <div th:if="${activitySchedule.confirmed == 'confirmed'}" th:style="'background-color: #DAF8AE'">-->
+        <div>
+        <span th:if="${activitySchedule.confirmed =='confirmed'}" > confirmed
      		</span>
         </div>
 

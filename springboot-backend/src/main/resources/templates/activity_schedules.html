@@ -53,7 +53,15 @@
             <td th:text="${activitySchedule.activityschedule_id}"></td>
             <td th:text="${activitySchedule.childName}"></td>
             <td th:text="${activitySchedule.seniorName}"></td>
-            <td th:text="${activitySchedule.name}"></td>
+<!--            <td th:text="${activitySchedule.name}"></td>-->
+            <div th:switch="${activitySchedule.name}">
+                <td th:case="'Book Reading'" ><img width="100" th:src="@{images/bookreading.jpg}" /></td>
+                <td th:case="'Ball Game'"><img width="100" th:src="@{images/ballgame.jpg}"/></td>
+                <td th:case="'Puzzle'"><img width="100" th:src="@{images/puzzle.jpg}"/></td>
+                <td th:case="'Origami'"><img width="100" th:src="@{images/origami.jpg}"/></td>
+                <td th:case="'Drawing'"><img width="100" th:src="@{images/drawing.jpg}"/></td>
+                <td th:case="*"><img width="100" th:src="@{images/bookreading.jpg}" /></td>
+            </div>
             <td th:text="${activitySchedule.description}"></td>
             <td th:text="${activitySchedule.date}"></td>
             <td th:text="${activitySchedule.confirmed}"></td>
